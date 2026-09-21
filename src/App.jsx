@@ -4,7 +4,7 @@ import './App.css'
 function App() {
   const [input, setInput] = useState('') // state variables are used to store the data that changes over time
   const [messages, setMessages] = useState([])
-
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
   const handleSend = async (e) => { // this variable is used to handle the sending part of the chat bot interface
     e.preventDefault()
 
@@ -16,7 +16,7 @@ function App() {
     setInput('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userMessage }),
